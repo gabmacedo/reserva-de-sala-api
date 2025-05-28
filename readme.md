@@ -4,13 +4,12 @@ Este repositório contém a **API de Reserva de Salas**, desenvolvida com **Flas
 
 ## 🧩 Arquitetura
 
-A API de Reserva de Salas é um **microsserviço** que faz parte de um sistema maior de [School System](https://github.com/caio-ireno/School-System-Api)
+A API de Reserva de Salas é um **microsserviço** que faz parte de um sistema maior de [Gerenciamento Escolar](https://github.com/gabmacedo/schoolSystem_API.git)
 , sendo responsável exclusivamente pelo gerenciamento das reservas de salas por turma.
 
 ⚠️ **Esta API depende de outra API de Gerenciamento Escolar (School System)**, que deve estar em execução e exposta localmente. A comunicação entre os serviços ocorre via **requisições HTTP REST**, para validar:
 
 - Se a **Turma** existe (`GET /turmas/<id>`)
-- (Opcional) Se o **Aluno** existe (`GET /alunos/<id>`) – pode ser desativado se não usado.
 
 ---
 
@@ -29,8 +28,8 @@ A API de Reserva de Salas é um **microsserviço** que faz parte de um sistema m
 ### 1. Clone o repositório
 
 ```bash
-git clone https://github.com/seu-usuario/reserva-salas.git
-cd reserva-salas
+git clone https://github.com/gabmacedo/reserva-de-sala-api.git
+cd reserva-api
 ```
 
 ### 2. Crie um ambiente virtual (opcional, mas recomendado)
@@ -54,7 +53,7 @@ python app.py
 ```
 
 A aplicação estará disponível em:
-📍 `http://localhost:5001`
+📍 `http://localhost:5000`
 
 📝 **Observação:** O banco de dados é criado automaticamente na primeira execução.
 
@@ -65,7 +64,6 @@ A aplicação estará disponível em:
 - `GET /reservas` – Lista todas as reservas
 - `POST /reservas` – Cria uma nova reserva
 - `GET /reservas/<id>` – Detalha uma reserva
-- `PUT /reservas/<id>` – Atualiza uma reserva
 - `DELETE /reservas/<id>` – Remove uma reserva
 
 ### Exemplo de corpo JSON para criação:
@@ -74,9 +72,7 @@ A aplicação estará disponível em:
 {
   "turma_id": 1,
   "sala": "101",
-  "data": "2025-05-06",
-  "hora_inicio": "14:00",
-  "hora_fim": "16:00"
+  "data": "2025-05-06"
 }
 ```
 
@@ -87,22 +83,29 @@ A aplicação estará disponível em:
 Certifique-se de que a **API de Gerenciamento Escolar** esteja rodando em:
 
 ```
-http://localhost:5000
+http://localhost:5050
 ```
 
-E que os endpoints de `GET /turmas/<id>` (e opcionalmente `GET /alunos/<id>`) estejam funcionando corretamente para que a validação seja feita com sucesso.
+E que o endpoint de `GET /turmas/<id>` estejam funcionando corretamente para que a validação seja feita com sucesso.
 
 ---
 
 ## 📦 Estrutura do Projeto
 
 ```
-reserva-salas/
-│
+reserva-api/
+├── controller/
+│   └──reserva_controller.py
+├── instance/
+│   └──reservas.db
+├── models/
+│   └──reserva_model.py
+├── routes/
+│   └──reserva_route.py
 ├── app.py
-├── reserva_model.py
+├── config.py
 ├── database.py
-├── routes.py
+├── dockerfile
 ├── requirements.txt
 └── README.md
 ```
@@ -117,6 +120,8 @@ reserva-salas/
 
 ---
 
-## 🧑‍💻 Autor
+## 🧑‍💻 Autores
 
-Caio Ireno – Projeto educativo de arquitetura com Flask e microsserviços.
+- [Gabriel Aparecido de Macedo](https://github.com/gabmacedo) | RA: 2401541  
+- [Guilherme Eduardo Moraes Pecorari](https://github.com/GuilhermePecorari) | RA: 2400086  
+- [Davi de Moraes Bizerra](https://github.com/Davibizerra) | RA: 2401072
